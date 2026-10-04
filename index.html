@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>নূর আল হায়াত গ্লোবাল ড্যাশবোর্ড - Ultimate AI Ecosystem</title>
+    <!-- Tailwind CSS Standard Stable CDN -->
+    <script src="https://tailwindcss.com"></script>
+    <!-- FontAwesome Icons for Dashboard -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans">
+
+    <!-- Top Navigation Bar -->
+    <header class="bg-gray-800 border-b border-gray-700 px-6 py-4 flex justify-between items-center shadow-lg">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center font-bold text-gray-900 shadow-md">NH</div>
+            <h1 class="text-xl font-bold tracking-wide text-amber-400">NOOR AL HAYAT GLOBAL DASHBOARD</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span class="text-sm bg-green-950 text-green-400 px-3 py-1 rounded-full border border-green-700 font-semibold flex items-center">
+                <span class="w-2 h-2 bg-green-400 rounded-full inline-block mr-2 animate-pulse"></span>লাইভ এআই ইকোসিস্টেম অ্যাক্টিভ
+            </span>
+            <span class="text-gray-400 text-sm hidden sm:inline"><i class="fa-solid fa-user-shield mr-1"></i> আলটিমেট অ্যাডমিন প্যানেল</span>
+        </div>
+    </header>
+
+    <div class="p-4 sm:p-6 max-w-7xl mx-auto space-y-6">
+        
+        <!-- SECTION 1: LIVE AI DASHBOARD MATRICES -->
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-md">
+                <p class="text-xs text-gray-400 uppercase font-bold tracking-wider">Today's Flights</p>
+                <p class="text-2xl sm:text-3xl font-black text-amber-400 mt-1" id="today-flights-count">0</p>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-md">
+                <p class="text-xs text-gray-400 uppercase font-bold tracking-wider">Current Processing</p>
+                <p class="text-2xl sm:text-3xl font-black text-blue-400 mt-1" id="processing-count">0</p>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-md">
+                <p class="text-xs text-gray-400 uppercase font-bold tracking-wider">Ready Flight Position</p>
+                <p class="text-2xl sm:text-3xl font-black text-green-400 mt-1" id="ready-count">0</p>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-md">
+                <p class="text-xs text-gray-400 uppercase font-bold tracking-wider">Next 1 Month Forecast</p>
+                <p class="text-2xl sm:text-3xl font-black text-purple-400 mt-1" id="forecast-count">0</p>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 shadow-md col-span-2 md:col-span-1">
+                <p class="text-xs text-gray-400 uppercase font-bold tracking-wider">Total Ledger Cost</p>
+                <p class="text-xl sm:text-2xl font-black text-pink-400 mt-1.5" id="annual-count">0 BDT</p>
+            </div>
+        </div>
+
+        <!-- AI FINANCIAL SUMMARY CARD -->
+        <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 shadow-xl grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+                <p class="text-xs sm:text-sm text-gray-400 font-semibold mb-1">এআই বাজেট ডিস্ট্রিবিউশন প্রগ্রেস</p>
+                <div class="w-full bg-gray-700 rounded-full h-3 mt-2 overflow-hidden">
+                    <div id="ai-budget-progress" class="bg-gradient-to-r from-amber-500 to-pink-500 h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3 bg-gray-900/40 p-3 rounded-lg border border-gray-700/50">
+                <i class="fa-solid fa-calculator text-2xl text-blue-400"></i>
+                <div>
+                    <p class="text-xs text-gray-400 uppercase font-bold">গড় প্রসেসিং খরচ (Per Capita)</p>
+                    <p class="text-base sm:text-lg font-bold text-gray-200" id="ai-avg-cost">0 BDT</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3 bg-gray-900/40 p-3 rounded-lg border border-gray-700/50">
+                <i class="fa-solid fa-users text-2xl text-purple-400"></i>
+                <div>
+                    <p class="text-xs text-gray-400 uppercase font-bold">মোট নিবন্ধিত কর্মী সংখ্যা</p>
+                    <p class="text-base sm:text-lg font-bold text-gray-200" id="ai-total-candidates">0 jon</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- NEW SECTION: INTERNATIONAL AI DOCUMENT SCANNER -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Scanner Control Panel -->
+            <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 shadow-xl space-y-4 md:col-span-2">
+                <h3 class="text-base sm:text-lg font-bold text-amber-400 flex items-center">
+                    <i class="fa-solid fa-expand text-amber-400 mr-2 animate-pulse"></i> 
+                    আইডি ও পাসপোর্ট কমপ্লায়েন্স এআই স্ক্যানার (ICAO Compliant)
+                </h3>
+                <p class="text-xs text-gray-400">আন্তর্জাতিক মানদণ্ড এবং স্বচ্ছতা বজায় রাখতে ক্যান্ডিডেটের মূল পাসপোর্ট/স্মার্ট কার্ড ফাইলটি আপলোড করুন। এআই স্বয়ংক্রিয়ভাবে তথ্য এক্সট্র্যাক্ট করবে।</p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- File Drag Drop Block -->
+                    <label class="border-2 border-dashed border-gray-600 hover:border-amber-500 rounded-xl p-4 sm:p-6 flex flex-col items-center justify-center cursor-pointer bg-gray-900/50 transition-all group">
+                        <i class="fa-solid fa-cloud-arrow-up text-3xl text-gray-500 group-hover:text-amber-400 mb-2 transition-colors"></i>
+                        <span class="text-sm font-semibold text-gray-300">ডকুমেন্ট ফাইল আপলোড</span>
+                        <span class="text-[11px] text-gray-500 mt-1">PNG, JPG, PDF (Max 10MB)</span>
+                        <input type="file" id="scanner-file-input" onchange="processScannedDocument(event)" class="hidden">
+                    </label>
+
+                    <!-- Camera Mock Trigger -->
+                    <div onclick="triggerCameraScan()" class="border-2 border-gray-700 hover:border-blue-500 rounded-xl p-4 sm:p-6 flex flex-col items-center justify-center cursor-pointer bg-gray-900/50 transition-all group">
+                        <i class="fa-solid fa-camera text-3xl text-gray-500 group-hover:text-blue-400 mb-2 transition-colors"></i>
+                        <span class="text-sm font-semibold text-gray-300">লাইভ ক্যামেরা স্ক্যান</span>
+                        <span class="text-[11px] text-gray-500 mt-1">রিয়েল-টাইম অটো ক্যাপচার</span>
+                    </div>
+                </div>
+
+                <!-- Live Auto-Filled Preview Form Container -->
+                <div class="bg-gray-900/60 p-4 rounded-lg border border-gray-700 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                        <label class="text-xs text-gray-400 block mb-1">এক্সট্র্যাক্টেড নাম</label>
+                        <input type="text" id="cand-name" placeholder="অটো-ফিল্ড নাম" class="w-full bg-gray-800 border border-gray-700 rounded p-2 text-xs text-gray-100 focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-400 block mb-1">এক্সট্র্যাক্টেড ট্রেড</label>
+                        <input type="text" id="cand-trade" placeholder="অটো-ফিল্ড ট্রেড" class="w-full bg-gray-800 border border-gray-700 rounded p-2 text-xs text-gray-100 focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-400 block mb-1">স্ট্যাটাস ও লজিক</label>
+                        <select id="cand-status" class="w-full bg-gray-800 border border-gray-700 rounded p-2 text-xs text-gray-100 focus:outline-none focus:border-amber-500">
+                            <option value="Running">Current Processing</option>
+                            <option value="Ready Position">Ready Flight Position</option>
+                            <option value="Completed">Completed Flight</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex justify-end">
+                    <button onclick="addCandidateData()" class="bg-amber-500 hover:bg-amber-600 text-gray-900 font-bold px-6 py-2 rounded-lg text-xs sm:text-sm transition-all shadow-md flex items-center gap-1.5">
+                        <i class="fa-solid fa-square-plus"></i> ডাটাবেসে সেভ করুন
+                    </button>
+                </div>
+            </div>
+
+            <!-- Transparent Audit Image Viewer -->
+            <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 shadow-xl flex flex-col justify-between">
+                <div>
+                    <h3 class="text-xs font-bold text-gray-300 uppercase tracking-wider flex items-center gap-1.5 mb-2">
+                        <i class="fa-solid fa-eye text-blue-400"></i> স্পষ্ট ক্লিয়ার ভিউ ইন্টারফেস
+                    </h3>
+                    <div class="w-full h-48 bg-gray-900 rounded-lg border border-gray-700 flex flex-col items-center justify-center p-2 relative overflow-hidden">
+                        <img id="scanned-doc-preview" class="w-full h-full object-contain hidden" alt="Scanned Document">
+                        <div id="preview-placeholder" class="text-center p-4">
