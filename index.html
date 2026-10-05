@@ -6,11 +6,11 @@
 <title>NOOR AL HAYAT GLOBAL</title>
 <style>
 body{margin:0;font-family:Arial;background:#b30000}
-.topbar{background:#b30000;text-align:center;padding:20px 10px 10px 10px}
+.topbar{background:#b30000;text-align:center;padding:20px 10px}
 #noorLogo{width:180px;height:180px;border-radius:50%;border:3px solid gold;box-shadow:0 0 25px gold;display:block;margin:0 auto;object-fit:cover;background:white;cursor:pointer}
 .title{color:gold;font-size:26px;font-weight:900;margin:12px 0 0 0}
-.sub{color:#ffe6a0;font-size:12px;line-height:1.4}
-.hint{color:#fff;font-size:10px;opacity:0.7;margin-top:8px}
+.sub{color:#ffe6a0;font-size:11px}
+.hint{color:#fff;font-size:10px;opacity:.7;margin-top:8px}
 .container{padding:15px;max-width:900px;margin:0 auto;background:#fff;border-radius:20px 20px 0 0;margin-top:15px;min-height:600px}
 .card{background:#fff8f0;border:1px solid gold;border-radius:16px;padding:15px;margin:12px 0}
 .btn{background:#b30000;color:gold;border:1px solid gold;padding:10px 18px;border-radius:10px;font-weight:700;cursor:pointer}
@@ -20,32 +20,18 @@ input,select{width:100%;padding:11px;margin:6px 0;border-radius:9px;border:1px s
 </head>
 <body>
 <div class="topbar">
-<img id="noorLogo" src="logo.png" alt="NOOR AL HAYAT GLOBAL LOGO">
+<img id="noorLogo" src="IMG-20261005-WA6904.jpg" alt="LOGO">
 <div class="title">NOOR AL HAYAT GLOBAL</div>
 <div class="sub">BANGLADESH AGRO • FOOD PROCESS • RECRUITMENT SOCIAL TRANSACTION<br><b style="color:gold">FAIR & ETHICAL ECOSYSTEM</b></div>
-<div class="hint">লোগোতে ৩ বার ট্যাপ = Super Admin |?admin = Backup | noor = PC</div>
+<div class="hint">লোগোতে ৩ বার ট্যাপ = Super Admin |?admin = Backup | noor টাইপ = PC</div>
 </div>
-
 <div class="container">
-<div class="card"><h3>🌾 Worker Management</h3>
-<input id="workerName" placeholder="Worker Name"><input id="passport" placeholder="Passport">
-<select id="bmet"><option>BMET: Pending</option><option>Verified</option></select>
-<button class="btn" onclick="addWorker()">+ Add Worker</button><div id="workerList"></div></div>
-
-<div class="card"><h3>💰 Halal Cash Ledger</h3>
-<input id="amount" type="number" placeholder="Amount ৳"><input id="purpose" placeholder="Purpose">
-<button class="btn" onclick="addLedger()">Add Ledger</button><div id="ledgerList"></div></div>
-
-<div class="card"><h3>✅ ILO 11 Checklist</h3><div id="iloList"></div><p id="iloStatus"></p>
-<button class="btn" onclick="exportPDF()">📄 Export Audit PDF + QR</button></div>
-
-<div id="superAdmin"><h2 style="color:gold">🔐 SUPER ADMIN - MD SELIM SABUS</h2><div id="logArea"></div>
-<button class="btn" style="background:gold;color:#000" onclick="localStorage.clear();location.reload()">Clear All</button>
-<button class="btn" onclick="document.getElementById('superAdmin').style.display='none'" style="margin-left:8px">Close</button></div>
-
+<div class="card"><h3>🌾 Worker Management</h3><input id="workerName" placeholder="Worker Name"><input id="passport" placeholder="Passport"><select id="bmet"><option>BMET: Pending</option><option>Verified</option></select><button class="btn" onclick="addWorker()">+ Add Worker</button><div id="workerList"></div></div>
+<div class="card"><h3>💰 Halal Cash Ledger</h3><input id="amount" type="number" placeholder="Amount ৳"><input id="purpose" placeholder="Purpose"><button class="btn" onclick="addLedger()">Add Ledger</button><div id="ledgerList"></div></div>
+<div class="card"><h3>✅ ILO 11 Checklist</h3><div id="iloList"></div><p id="iloStatus"></p><button class="btn" onclick="exportPDF()">📄 Export Audit PDF + QR</button></div>
+<div id="superAdmin"><h2 style="color:gold">🔐 SUPER ADMIN - MD SELIM SABUS</h2><div id="logArea"></div><button class="btn" style="background:gold;color:#000" onclick="localStorage.clear();location.reload()">Clear All</button><button class="btn" onclick="document.getElementById('superAdmin').style.display='none'" style="margin-left:8px">Close</button></div>
 <div class="card"><h4>📋 Audit Log</h4><div id="auditLog" style="font-size:11px"></div></div>
 </div>
-
 <script>
 let workers=JSON.parse(localStorage.getItem('nah_w')||'[]'),ledgers=JSON.parse(localStorage.getItem('nah_l')||'[]'),logs=JSON.parse(localStorage.getItem('nah_lo')||'[]');
 function addLog(a,d=''){let t=new Date().toLocaleString('bn-BD');logs.unshift(t+' - '+a+' '+(d||''));localStorage.setItem('nah_lo',JSON.stringify(logs));renderLogs()}
