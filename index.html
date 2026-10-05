@@ -75,6 +75,13 @@ function genQR(h){ alert(`QR Code for ${h}\nScan at: https://mdselimsabus-ship-i
 function toggleB2B(){ alert("B2B Client Portal: Foreign Company Login - Live Worker List with Points, QR Verification, Contract, Insurance - All Transparent. No Discrimination.");}
 function exportLedger(){ let txt=workers.map(w=>`${w.n},${w.p},${w.pts},${w.hash},${w.time}`).join('\n'); let blob=new Blob([txt],{type:'text/csv'}); let a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='NOOR_AL_HAYAT_AUDIT_LEDGER_1000YEAR.csv'; a.click(); addLog("📄 Audit Ledger Exported - Blockchain Hash Secured - 100% Compliant for Any Audit");}
 renderILO(); renderWorkers(); addLog("System Initialized - Philippines POEA Gold Standard Loaded - Australia SkillSelect Loaded - ILO 11 Indicators Active - Ready for 1000 Year Standard - For Rab's Satisfaction");
+</script><!-- HIDDEN SUPER ADMIN - ONLY FOR YOU -->
+<div id="superAdmin" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#0a0f1e; z-index:9999; padding:20px; overflow:auto;">
+<h2 style="color:#fbbf24;">🔐 SUPER ADMIN - NH1000</h2>
+<button onclick="document.getElementById('superAdmin').style.display='none'" style="background:red;color:white;padding:5px 15px;">✕ Close</button>
+</div>
+<script>
+let keys='';document.addEventListener('keypress',(e)=>{keys+=e.key.toLowerCase();if(keys.includes('noor')){let p=prompt('🔐 Password?');if(p==='NH1000'){document.getElementById('superAdmin').style.display='block';}else if(p!==null){alert('❌ Wrong');}keys='';}if(keys.length>10)keys='';});
 </script>
 </body>
 </html>
