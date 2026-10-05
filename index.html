@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noor Al Hayat Global - Fair Recruitment & Decent Work Hub</title>
-    <!-- Tailwind CSS Standard Stable CDN -->
-    <script src="https://tailwindcss.com"></script>
-    <!-- FontAwesome Icons for Dashboard -->
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- Fixed: Tailwind CSS Correct CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fixed: FontAwesome Correct CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body class="bg-gray-950 text-gray-100 font-sans antialiased">
 
@@ -18,28 +18,27 @@
             <div>
                 <h1 class="text-lg sm:text-xl font-black tracking-wide text-amber-400">NOOR AL HAYAT GLOBAL LTD.</h1>
                 <p class="text-[10px] text-sky-400 uppercase tracking-widest font-mono flex items-center gap-1">
-                    <i class="fa-solid fa-globe"></i> UN & ILO Ethical Sourcing Framework Compliant
+                    <i class="fa-solid fa-globe"></i> UN & ILO Ethical Sourcing Framework Compliant | IOM IRIS Certified
                 </p>
             </div>
         </div>
-        <!-- STATUS INDICATORS & MODE SWITCHER -->
         <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
-            <span class="text-xs bg-sky-950/80 text-sky-400 px-3 py-1.5 rounded-lg border border-sky-800 font-mono flex items-center gap-1.5 shadow-inner">
-                <i class="fa-solid fa-scale-balanced animate-pulse"></i> ইকুয়াল অপরচুনিটি
+            <span class="text-xs bg-sky-950/80 text-sky-400 px-3 py-1.5 rounded-lg border border-sky-800 font-mono flex items-center gap-1.5">
+                <i class="fa-solid fa-scale-balanced animate-pulse"></i> আইন সবার জন্য সমান
             </span>
             <div id="admin-logged-badge" class="hidden text-xs bg-green-950 text-green-400 px-3 py-1.5 rounded-lg border border-green-700 font-bold flex items-center gap-1">
                 <span class="w-2 h-2 bg-green-400 rounded-full animate-ping"></span> মোড: অ্যাডমিন
             </div>
-            <button id="lock-btn" onclick="openLoginModal()" class="bg-gray-800 hover:bg-amber-500 hover:text-gray-950 text-amber-400 text-xs px-3 py-1.5 rounded-lg border border-gray-700 font-bold transition-all shadow-md flex items-center gap-1.5">
+            <button id="lock-btn" onclick="openLoginModal()" class="bg-gray-800 hover:bg-amber-500 hover:text-gray-950 text-amber-400 text-xs px-3 py-1.5 rounded-lg border border-gray-700 font-bold transition-all">
                 <i class="fa-solid fa-lock"></i> অ্যাডমিন লগইন
             </button>
-            <button id="logout-btn" onclick="lockDashboard()" class="hidden bg-red-950/60 hover:bg-red-900 text-red-400 text-xs px-3 py-1.5 rounded-lg border border-red-800 font-bold transition-all shadow-md flex items-center gap-1.5">
+            <button id="logout-btn" onclick="lockDashboard()" class="hidden bg-red-950/60 hover:bg-red-900 text-red-400 text-xs px-3 py-1.5 rounded-lg border border-red-800 font-bold">
                 <i class="fa-solid fa-power-off"></i> লগআউট
             </button>
         </div>
     </header>
 
-    <!-- ADMIN AUTHENTICATION MODAL DIALOG -->
+    <!-- ADMIN AUTH MODAL -->
     <div id="auth-modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50 p-4 backdrop-blur-sm">
         <div class="bg-gray-900 border border-gray-800 p-6 rounded-2xl shadow-2xl max-w-sm w-full text-center space-y-5">
             <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-full flex items-center justify-center mx-auto text-xl border border-amber-500/20">
@@ -49,94 +48,154 @@
                 <h3 class="text-md font-bold text-gray-200">অ্যাডমিন গেটওয়ে ভেরিফিকেশন</h3>
                 <p class="text-xs text-gray-500 mt-1">পাসপোর্ট স্ক্যানার এবং লেজার সম্পাদনা সুরক্ষার জন্য</p>
             </div>
-            <div class="space-y-1 text-left">
-                <input type="password" id="admin-password" placeholder="সিকিউরিটি পাসওয়ার্ড লিখুন" class="w-full bg-gray-950 border border-gray-700 rounded-xl p-3 text-sm text-gray-100 focus:outline-none focus:border-amber-500 font-mono tracking-widest text-center">
-                <p id="auth-error-text" class="text-[11px] text-red-400 font-medium hidden text-center pt-1">
-                    <i class="fa-solid fa-circle-exclamation mr-1"></i> ভুল পাসওয়ার্ড! আবার চেষ্টা করুন।
-                </p>
-            </div>
+            <input type="password" id="admin-password" placeholder="পাসওয়ার্ড: 1234" class="w-full bg-gray-950 border border-gray-700 rounded-xl p-3 text-sm text-gray-100 focus:outline-none focus:border-amber-500 font-mono text-center">
+            <p id="auth-error-text" class="text-[11px] text-red-400 font-medium hidden">ভুল পাসওয়ার্ড!</p>
             <div class="flex gap-3">
-                <button onclick="closeLoginModal()" class="w-1/2 bg-gray-800 hover:bg-gray-700 text-gray-300 font-bold py-2.5 rounded-xl text-xs transition-all">বাতিল</button>
-                <button onclick="verifyAdminPassword()" class="w-1/2 bg-amber-500 hover:bg-amber-600 text-gray-900 font-bold py-2.5 rounded-xl text-xs transition-all shadow-md">ভেরিফাই</button>
+                <button onclick="closeLoginModal()" class="w-1/2 bg-gray-800 text-gray-300 font-bold py-2.5 rounded-xl text-xs">বাতিল</button>
+                <button onclick="verifyAdminPassword()" class="w-1/2 bg-amber-500 text-gray-900 font-bold py-2.5 rounded-xl text-xs">ভেরিফাই</button>
             </div>
         </div>
     </div>
 
-    <!-- MAIN BODY CONTEXT -->
     <div class="p-4 sm:p-6 max-w-7xl mx-auto space-y-6">
-        
-        <!-- SECTION 1: GLOBAL UN ECOSYSTEM INDICATORS (পাবলিক ট্রাস্ট বক্স) -->
+
+        <!-- TRUST INDICATORS -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 shadow-lg flex items-center space-x-3">
-                <div class="p-3 rounded-lg bg-emerald-500/10 text-emerald-400 text-lg"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-                <div>
-                    <p class="text-[10px] text-gray-500 uppercase font-mono tracking-wider">Zero-Cost Sourcing</p>
-                    <p class="text-xs sm:text-sm font-bold text-gray-200">১০০% ফ্রি মডেল</p>
-                </div>
+            <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 flex items-center space-x-3">
+                <div class="p-3 rounded-lg bg-emerald-500/10 text-emerald-400"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                <div><p class="text-[10px] text-gray-500 uppercase">Zero-Cost Sourcing</p><p class="text-sm font-bold">১০০% ফ্রি মডেল</p></div>
             </div>
-            <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 shadow-lg flex items-center space-x-3">
-                <div class="p-3 rounded-lg bg-sky-500/10 text-sky-400 text-lg"><i class="fa-solid fa-venus-mars"></i></div>
-                <div>
-                    <p class="text-[10px] text-gray-500 uppercase font-mono tracking-wider">Gender & Equality</p>
-                    <p class="text-xs sm:text-sm font-bold text-gray-200">০% বৈষম্য ইনডেক্স</p>
-                </div>
+            <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 flex items-center space-x-3">
+                <div class="p-3 rounded-lg bg-sky-500/10 text-sky-400"><i class="fa-solid fa-venus-mars"></i></div>
+                <div><p class="text-[10px] text-gray-500 uppercase">Gender & Equality</p><p class="text-sm font-bold">০% বৈষম্য</p></div>
             </div>
-            <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 shadow-lg flex items-center space-x-3">
-                <div class="p-3 rounded-lg bg-amber-500/10 text-amber-400 text-lg"><i class="fa-solid fa-shield-heart"></i></div>
-                <div>
-                    <p class="text-[10px] text-gray-500 uppercase font-mono tracking-wider">Decent Work Compliance</p>
-                    <p class="text-xs sm:text-sm font-bold text-gray-200">আইএলও আইডিয়াল গ্রেড</p>
-                </div>
+            <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 flex items-center space-x-3">
+                <div class="p-3 rounded-lg bg-amber-500/10 text-amber-400"><i class="fa-solid fa-shield-heart"></i></div>
+                <div><p class="text-[10px] text-gray-500 uppercase">Decent Work</p><p class="text-sm font-bold">ILO Ideal Grade</p></div>
             </div>
-            <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 shadow-lg flex items-center space-x-3">
-                <div class="p-3 rounded-lg bg-pink-500/10 text-pink-400 text-lg"><i class="fa-solid fa-passport"></i></div>
-                <div>
-                    <p class="text-[10px] text-gray-500 uppercase font-mono tracking-wider">Total Ledger Transacted</p>
-                    <p class="text-sm font-black text-pink-400 font-mono" id="annual-count">0 BDT</p>
-                </div>
+            <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 flex items-center space-x-3">
+                <div class="p-3 rounded-lg bg-pink-500/10 text-pink-400"><i class="fa-solid fa-passport"></i></div>
+                <div><p class="text-[10px] text-gray-500 uppercase">Ledger Transacted</p><p class="text-sm font-black text-pink-400" id="annual-count">0 BDT</p></div>
             </div>
         </div>
 
-        <!-- SECTION 2: LIVE MATRICES BOXES -->
+        <!-- LIVE MATRICES -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 shadow-md">
-                <p class="text-xs text-gray-400 uppercase font-bold tracking-wider">Today's Flights</p>
-                <p class="text-2xl sm:text-3xl font-black text-amber-400 mt-1 font-mono" id="today-flights-count">0</p>
+            <div class="bg-gray-900 p-4 rounded-xl border border-gray-800"><p class="text-xs text-gray-400 uppercase font-bold">Today's Flights</p><p class="text-3xl font-black text-amber-400 mt-1" id="today-flights-count">0</p></div>
+            <div class="bg-gray-900 p-4 rounded-xl border border-gray-800"><p class="text-xs text-gray-400 uppercase font-bold">Processing</p><p class="text-3xl font-black text-blue-400 mt-1" id="processing-count">0</p></div>
+            <div class="bg-gray-900 p-4 rounded-xl border border-gray-800"><p class="text-xs text-gray-400 uppercase font-bold">Ready Flight</p><p class="text-3xl font-black text-green-400 mt-1" id="ready-count">0</p></div>
+            <div class="bg-gray-900 p-4 rounded-xl border border-gray-800"><p class="text-xs text-gray-400 uppercase font-bold">Total Workers</p><p class="text-3xl font-black text-purple-400 mt-1" id="ai-total-candidates">0</p></div>
+        </div>
+
+        <!-- B2B INTERNATIONAL AGREEMENT DRAFT - NEW SECTION -->
+        <div class="bg-gray-900 p-6 rounded-xl border border-amber-500/30 shadow-2xl">
+            <h2 class="text-xl font-black text-amber-400 mb-4 flex items-center gap-2"><i class="fa-solid fa-file-contract"></i> INTERNATIONAL B2B FAIR & ETHICAL PARTNERSHIP - আদর্শ উদাহরণ</h2>
+            <p class="text-xs text-gray-400 mb-4">UN Fair & Ethical Zero Cost Model | ILO Decent Work | IOM IRIS | UN Global Compact | BGMEA Health & Safety</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed">
+                <div class="bg-gray-950 p-4 rounded-lg border border-gray-800">
+                    <h4 class="font-bold text-sky-400 mb-2">Zero Cost & Financial Discipline</h4>
+                    <ul class="list-disc ml-4 text-gray-300 space-y-1">
+                        <li>কোনো নগদ লেনদেন নয়, শুধু ব্যাংক ট্রান্সফার। ব্যাংক স্লিপই বৈধ গ্যারান্টি।</li>
+                        <li>আর্থিক শৃঙ্খলা বজায় রেখে সঠিক নিয়মে সঠিক সময়ে লেনদেন।</li>
+                        <li>অর্থ ও কাজের নিরাপত্তা নিশ্চিত করতে হবে।</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-950 p-4 rounded-lg border border-gray-800">
+                    <h4 class="font-bold text-amber-400 mb-2">Key Principles - মূল নীতিমালা</h4>
+                    <ul class="list-disc ml-4 text-gray-300 space-y-1">
+                        <li><b>আইন সবার জন্য সমান, প্রতারণা ও জালিয়াতি ক্ষমার অযোগ্য।</b></li>
+                        <li>অনিচ্ছাকৃত ভুল বিবেচনা করা যায়, তবে সত্য ও প্রমাণসাপেক্ষ হতে হবে।</li>
+                        <li>মিসিং তথ্য মার্জনীয় কিন্তু সত্য হতে হবে। যার ভুল সে খেসারত দিবে।</li>
+                        <li>সবকিছু আইন অনুযায়ী হবে। কোনো স্ট্যাম্প ও চেক গ্রহণযোগ্য নয়।</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-950 p-4 rounded-lg border border-gray-800">
+                    <h4 class="font-bold text-green-400 mb-2">BGMEA Health & Safety + Decent Work</h4>
+                    <ul class="list-disc ml-4 text-gray-300 space-y-1">
+                        <li>কর্মস্থলে স্বাস্থ্য, নিরাপত্তা, অগ্নি নিরাপত্তা নিশ্চিত।</li>
+                        <li>৮ ঘণ্টা ডিউটি, ওভারটাইম নিয়মানুযায়ী, থাকা-খাওয়া কোম্পানির।</li>
+                        <li>No forced labor, no child labor, gender equality।</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-950 p-4 rounded-lg border border-gray-800">
+                    <h4 class="font-bold text-pink-400 mb-2">Brand Value & Independent Livelihood</h4>
+                    <ul class="list-disc ml-4 text-gray-300 space-y-1">
+                        <li>স্বাধীন কর্ম জীবন ব্যবস্থা নিশ্চিত - No passport retention।</li>
+                        <li>স্বচ্ছতা ও নৈতিকতা ব্র্যান্ড ভ্যালু ও ট্রাস্ট বাড়াবে।</li>
+                        <li>Skill development ও পুনর্বাসন সহায়তা।</li>
+                    </ul>
+                </div>
             </div>
-            <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 shadow-md">
-                <p class="text-xs text-gray-400 uppercase font-bold tracking-wider">Current Processing</p>
-                <p class="text-2xl sm:text-3xl font-black text-blue-400 mt-1 font-mono" id="processing-count">0</p>
-            </div>
-            <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 shadow-md">
-                <p class="text-xs text-gray-400 uppercase font-bold tracking-wider">Ready Flight Position</p>
-                <p class="text-2xl sm:text-3xl font-black text-green-400 mt-1 font-mono" id="ready-count">0</p>
-            </div>
-            <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 shadow-md">
-                <p class="text-xs text-gray-400 uppercase font-bold tracking-wider">Total Registered Workers</p>
-                <p class="text-2xl sm:text-3xl font-black text-purple-400 mt-1 font-mono" id="ai-total-candidates">0</p>
+            <div class="mt-4 bg-amber-500/10 border border-amber-500/30 p-3 rounded-lg text-center">
+                <p class="text-sm font-bold text-amber-400">ত্রিপক্ষীয় ফেয়ার চুক্তি ও লিখিত অঙ্গীকার — আইন সবার জন্য সমান, প্রতারণা ও জালিয়াতি ক্ষমার অযোগ্য</p>
+                <p class="text-[10px] text-gray-500 mt-1">Office: BH Plaza, Nova Medical Center Er Upore, Abdul Aziz Sarak, Bhatara - Narda, Dhaka | Phone: 01731682933 | IOM IRIS Certified | 365SV7/8</p>
             </div>
         </div>
 
-        <!-- AI FINANCIAL SUMMARY CARD -->
-        <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-                <p class="text-xs sm:text-sm text-gray-400 font-semibold mb-1">এআই বাজেট ডিস্ট্রিবিউশন প্রগ্রেস</p>
-                <div class="w-full bg-gray-800 rounded-full h-3 mt-2 overflow-hidden border border-gray-700">
-                    <div id="ai-budget-progress" class="bg-gradient-to-r from-amber-500 to-pink-500 h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+        <!-- ADMIN ONLY SCANNER -->
+        <div id="admin-scanner-section" class="hidden">
+            <div class="bg-gray-900 p-5 rounded-xl border border-gray-800">
+                <h3 class="text-lg font-bold text-amber-400 mb-4"><i class="fa-solid fa-expand animate-pulse mr-2"></i> AI Passport Scanner (Admin Only)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <input type="text" id="p-name" placeholder="যাত্রীর নাম" class="bg-gray-950 border border-gray-700 rounded-lg p-3 text-sm">
+                    <input type="text" id="p-passport" placeholder="পাসপোর্ট নং" class="bg-gray-950 border border-gray-700 rounded-lg p-3 text-sm">
+                    <button onclick="addCandidate()" class="bg-amber-500 text-gray-900 font-bold rounded-lg p-3 text-sm">Add to Ledger</button>
                 </div>
-            </div>
-            <div class="flex items-center space-x-3 bg-gray-950 p-3 rounded-lg border border-gray-800">
-                <i class="fa-solid fa-calculator text-xl text-blue-400"></i>
-                <div>
-                    <p class="text-xs text-gray-400 uppercase font-bold">গড় প্রসেসিং খরচ (Per Capita)</p>
-                    <p class="text-sm font-bold text-gray-200" id="ai-avg-cost">0 BDT</p>
-                </div>
+                <div id="candidate-list" class="mt-4 space-y-2 text-xs"></div>
             </div>
         </div>
+    </div>
 
-        <!-- SECTION 3: INTERNATIONAL AI DOCUMENT SCANNER PANEL (শুধুমাত্র অ্যাডমিন মোডে দৃশ্যমান) -->
-        <div id="admin-scanner-section" class="hidden transition-all duration-300">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-gray-900 p-5 rounded-xl border border-gray-800 shadow-xl space-y-4 md:col-span-2">
-                    <h3 class="text-base sm:text-lg font-bold text-amber-400 flex items-center">
-                        <i class="fa-solid fa-expand text-amber-400 mr-2 animate-pulse"></i> 
+<script>
+// --- ADMIN AUTH LOGIC ---
+function openLoginModal(){ document.getElementById('auth-modal').classList.remove('hidden'); document.getElementById('auth-modal').classList.add('flex'); }
+function closeLoginModal(){ document.getElementById('auth-modal').classList.add('hidden'); document.getElementById('auth-modal').classList.remove('flex'); document.getElementById('admin-password').value=''; document.getElementById('auth-error-text').classList.add('hidden'); }
+function verifyAdminPassword(){
+    const pass = document.getElementById('admin-password').value;
+    if(pass === '1234'){ // Change your password here
+        document.getElementById('admin-scanner-section').classList.remove('hidden');
+        document.getElementById('admin-logged-badge').classList.remove('hidden');
+        document.getElementById('lock-btn').classList.add('hidden');
+        document.getElementById('logout-btn').classList.remove('hidden');
+        closeLoginModal();
+        liveUpdate();
+    } else {
+        document.getElementById('auth-error-text').classList.remove('hidden');
+    }
+}
+function lockDashboard(){
+    document.getElementById('admin-scanner-section').classList.add('hidden');
+    document.getElementById('admin-logged-badge').classList.add('hidden');
+    document.getElementById('lock-btn').classList.remove('hidden');
+    document.getElementById('logout-btn').classList.add('hidden');
+}
+
+// --- LIVE UPDATE SIMULATION ---
+let candidates = JSON.parse(localStorage.getItem('nh_candidates') || '[]');
+function liveUpdate(){
+    document.getElementById('ai-total-candidates').innerText = candidates.length;
+    document.getElementById('today-flights-count').innerText = candidates.filter(c=>c.status==='flight').length;
+    document.getElementById('processing-count').innerText = candidates.filter(c=>c.status==='processing').length;
+    document.getElementById('ready-count').innerText = candidates.filter(c=>c.status==='ready').length;
+    document.getElementById('annual-count').innerText = (candidates.length * 150000).toLocaleString() + ' BDT';
+    document.getElementById('ai-avg-cost').innerText = '1,50,000 BDT';
+    document.getElementById('ai-budget-progress').style.width = Math.min(candidates.length*10,100)+'%';
+
+    const list = document.getElementById('candidate-list');
+    list.innerHTML = candidates.map((c,i)=>`<div class="flex justify-between bg-gray-950 p-2 rounded border border-gray-800"><span>${c.name} - ${c.passport}</span><span class="text-amber-400">${c.status}</span></div>`).join('');
+}
+function addCandidate(){
+    const name = document.getElementById('p-name').value;
+    const passport = document.getElementById('p-passport').value;
+    if(!name ||!passport) return alert('নাম ও পাসপোর্ট দিন');
+    candidates.push({name, passport, status: 'processing'});
+    localStorage.setItem('nh_candidates', JSON.stringify(candidates));
+    document.getElementById('p-name').value=''; document.getElementById('p-passport').value='';
+    liveUpdate();
+}
+liveUpdate();
+setInterval(liveUpdate, 3000); // Live update every 3 sec
+</script>
+</body>
+</html>
