@@ -1,52 +1,38 @@
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Noor Al Hayat - V12 Royal</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-</head>
-<body class="bg-[#0f172a] text-white min-h-screen">
-
-<div class="bg-gradient-to-br from-emerald-700 via-teal-700 to-green-800 p-3 sticky top-0 z-50 shadow-2xl border-b-4 border-amber-400">
-<div class="max-w-7xl mx-auto flex items-center justify-between">
-<div class="flex items-center gap-3">
-<img src="./IMG-20261006-WA8921.jpg" id="logo" class="w-14 h-14 rounded-full border-2 border-amber-400 bg-white object-cover shadow-lg">
-<div>
-<h1 class="text-[15px] md:text-xl font-bold">NOOR AL HAYAT GLOBAL</h1>
-<p class="text-[10px] md:text-xs opacity-90">NSR #08430004 | 167 Function | V12 Royal</p>
-</div>
-</div>
-<div class="text-right"><p class="bg-black/30 px-3 py-1 rounded-full text-[10px]">8000 MVR | 60% WAQF</p><p class="text-[10px] mt-1 text-amber-300 font-bold">● LIVE</p></div>
-</div>
-</div>
-
-<div class="max-w-7xl mx-auto p-3">
-<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-<div class="bg-slate-800 p-3 rounded-xl border-l-4 border-emerald-400"><p class="text-[11px] text-gray-400">Functions</p><p class="text-xl font-bold text-emerald-400">167</p></div>
-<div class="bg-slate-800 p-3 rounded-xl border-l-4 border-blue-400"><p class="text-[11px] text-gray-400">Company</p><p class="text-[10px] font-bold text-blue-400">Noor Al Hayat Ltd.</p></div>
-<div class="bg-slate-800 p-3 rounded-xl border-l-4 border-amber-400"><p class="text-[11px] text-gray-400">Waqf Trust</p><p class="text-xl font-bold text-amber-400">60%</p></div>
-<div class="bg-slate-800 p-3 rounded-xl border-l-4 border-purple-400"><p class="text-[11px] text-gray-400">System</p><p class="text-xl font-bold text-purple-400">V12</p></div>
-</div>
-
-<div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="mods"></div>
-</div>
-
 <script>
 const mods=[
-{icon:'fa-users',c:'from-emerald-500 to-teal-600',t:'Recruitment Master',n:28,d:'CV, Interview, Medical, Visa, BMET'},
-{icon:'fa-tractor',c:'from-green-500 to-lime-600',t:'Bangladesh Agro',n:18,d:'Agro Project, Farmer'},
-{icon:'fa-utensils',c:'from-orange-500 to-red-600',t:'Food Process',n:15,d:'Processing, Packaging'},
-{icon:'fa-hand-holding-heart',c:'from-blue-500 to-cyan-600',t:'Waqf & Social',n:22,d:'60% Waqf, Charity'},
-{icon:'fa-file-invoice-dollar',c:'from-amber-500 to-yellow-600',t:'Accounts 8000 MVR',n:20,d:'Fee, Profit, Ledger'},
-{icon:'fa-plane',c:'from-sky-500 to-blue-600',t:'Travel & Ticket',n:12,d:'Ticket, Hotel, Umrah'},
-{icon:'fa-store',c:'from-purple-500 to-pink-600',t:'Global Business',n:18,d:'Import Export'},
-{icon:'fa-shield-halved',c:'from-red-500 to-rose-600',t:'Admin & NSR',n:34,d:'NSR #08430004, License'},
+{icon:'fa-users',c:'from-emerald-500 to-teal-500',t:'Recruitment Master',d:'28 Functions',s:'CV, Interview, Medical, Visa'},
+{icon:'fa-tractor',c:'from-green-500 to-lime-500',t:'Bangladesh Agro',d:'18 Functions',s:'Agro Project'},
+{icon:'fa-utensils',c:'from-orange-500 to-red-500',t:'Food Process',d:'15 Functions',s:'Processing'},
+{icon:'fa-hand-holding-heart',c:'from-blue-500 to-cyan-500',t:'Waqf & Trust',d:'12 Functions',s:'60% Waqf'},
+{icon:'fa-file-invoice-dollar',c:'from-amber-500 to-yellow-600',t:'Accounts 8000 MVR',d:'20 Functions',s:'Fee, Profit'},
+{icon:'fa-plane',c:'from-sky-500 to-blue-600',t:'Travel & Ticket',d:'12 Functions',s:'Ticket, Hotel'},
+{icon:'fa-store',c:'from-purple-500 to-pink-500',t:'Global Business',d:'18 Functions',s:'Import Export'},
+{icon:'fa-shield-halved',c:'from-red-500 to-red-800',t:'Admin & NSR',d:'34 Functions - SECURED',s:'NSR #08430004',secure:true}
 ];
-document.getElementById('mods').innerHTML=mods.map(m=>`<div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700"><div class="bg-gradient-to-r ${m.c} p-3 flex gap-3 items-center"><i class="fas ${m.icon}"></i><div class="flex-1"><p class="font-bold text-sm">${m.t}</p><p class="text-[10px] opacity-80">${m.n} Functions</p></div></div><div class="p-3"><p class="text-[11px] text-gray-400">${m.d}</p><button class="mt-2 w-full bg-slate-700 py-1.5 rounded text-[11px]">Open Module</button></div></div>`).join('');
+document.getElementById('mods').innerHTML=mods.map(m=>`<div class="bg-slate-800 rounded-xl overflow-hidden ${m.secure?'hidden border-2 border-red-500' : ''}" id="${m.secure?'adminCard':''}"><div class="bg-gradient-to-r ${m.c} p-4 flex gap-3 items-center"><i class="fa ${m.icon}"></i><div><h3 class="font-bold">${m.t}</h3><p class="text-xs opacity-80">${m.d}</p></div></div><div class="p-3"><p class="text-xs opacity-60 mb-2">${m.s}</p><button class="w-full bg-slate-700 py-2 rounded-lg text-sm ${m.secure?'bg-red-600 font-bold':''}">${m.secure?'🔓 Open Secure Module':'Open Module'}</button></div></div>`).join('');
+
 // Logo Fallback
-document.getElementById('logo').onerror=function(){this.src='https://cdn-icons-png.flaticon.com/512/2830/2830305.png';}
+document.getElementById('logo').onerror=function(){this.src='https://via.placeholder.com/100?text=NH';};
+
+// --- ROYAL 3 CLICK + NH1000 SECURITY ---
+let clicks=0; let timer=null;
+const logo=document.getElementById('logo');
+const PASSWORD="NH1000";
+logo.addEventListener('click',()=>{
+ clicks++; logo.style.boxShadow=`0 0 ${clicks*10}px gold`;
+ if(timer) clearTimeout(timer); timer=setTimeout(()=>{clicks=0; logo.style.boxShadow='';},1500);
+ if(clicks===3){ 
+   clicks=0; logo.style.boxShadow='';
+   const p=prompt('🔐 Royal Security - 3 Click Verified\nEnter Password:');
+   if(p===PASSWORD){ 
+     document.getElementById('adminCard').classList.remove('hidden');
+     document.getElementById('adminCard').scrollIntoView({behavior:'smooth'});
+     alert('✅ Admin Unlocked - NH1000 Verified');
+     sessionStorage.setItem('adminUnlock','true');
+   } else if(p!==null){ alert('❌ Wrong Password!'); }
+ }
+});
+if(sessionStorage.getItem('adminUnlock')==='true'){ const c=document.getElementById('adminCard'); if(c) c.classList.remove('hidden'); }
 </script>
 <script src="./kalyan_167_final.js"></script>
 </body>
