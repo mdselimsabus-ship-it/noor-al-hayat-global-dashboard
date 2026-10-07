@@ -1,54 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NOOR AL HAYAT GLOBAL - V12 Royal</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body class="bg-[#0f172a] text-white">
-<div class="bg-gradient-to-r from-emerald-800 to-teal-700 p-3 sticky top-0 z-50 border-b-2 border-amber-400">
-<div class="max-w-7xl mx-auto flex items-center justify-between">
-<div class="flex items-center gap-3">
-<img src="./IMG-20261006-WA8921.jpg" id="logo" class="w-14 h-14 rounded-full border-2 border-amber-400 bg-white object-cover shadow-lg cursor-pointer">
-<div><h1 class="text-[15px] md:text-xl font-bold">NOOR AL HAYAT GLOBAL</h1><p class="text-[10px] md:text-xs opacity-90">NSR #08430004 | 167 Function | V12 Royal</p></div>
-</div>
-<div class="text-right"><p class="bg-black/30 px-3 py-1 rounded-full text-[10px]">8000 MVR | 60% WAQF</p><p class="text-[10px] mt-1 text-yellow-300">● LIVE</p></div>
-</div>
-</div>
-<div class="max-w-7xl mx-auto p-3">
-<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-<div class="bg-slate-800 p-3 rounded-xl border-l-4 border-emerald-400"><p class="text-xs opacity-70">Functions</p><p class="text-2xl font-bold text-emerald-400">167</p></div>
-<div class="bg-slate-800 p-3 rounded-xl border-l-4 border-blue-400"><p class="text-xs opacity-70">Company</p><p class="text-sm font-bold text-blue-400">Noor Al Hayat</p></div>
-<div class="bg-slate-800 p-3 rounded-xl border-l-4 border-yellow-400"><p class="text-xs opacity-70">Waqf Trust</p><p class="text-2xl font-bold text-yellow-400">60%</p></div>
-<div class="bg-slate-800 p-3 rounded-xl border-l-4 border-purple-400"><p class="text-xs opacity-70">System</p><p class="text-2xl font-bold text-purple-400">V12</p></div>
-</div>
-<div id="mods" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-</div>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>NOOR</title><style>body{background:#0a0e1a;color:#fff;padding:10px;font-family:sans-serif}.card{margin:10px 0;background:#1a2035;padding:15px;border-radius:12px}.btn{width:100%;padding:12px;background:#00c853;border:none;color:#fff;border-radius:8px;margin-top:8px}</style></head><body>
+<h2>নূর আল হায়াত - ১৬৭ ফাংশন</h2><p>NSR #08430004 | V12 Royal</p>
+<div id="m"></div>
+<div id="pop" style="display:none;position:fixed;inset:0;background:#000d;z-index:99;padding:20px"><div style="background:#162040;padding:15px;border-radius:12px"><div style="display:flex;justify-content:space-between"><b id="t"></b><span onclick="document.getElementById('pop').style.display='none'" style="font-size:22px">✕</span></div><div id="l" style="margin-top:10px"></div></div></div>
 <script>
-const mods=[
-{icon:'fa-users',c:'from-emerald-500 to-teal-500',t:'Recruitment Master',d:'28 Functions',s:'CV, Interview, Medical, Visa, BMET'},
-{icon:'fa-tractor',c:'from-green-500 to-lime-500',t:'Bangladesh Agro',d:'18 Functions',s:'Agro Project, Farmer'},
-{icon:'fa-utensils',c:'from-orange-500 to-red-500',t:'Food Process',d:'15 Functions',s:'Processing, Packaging'},
-{icon:'fa-hand-holding-heart',c:'from-blue-500 to-cyan-500',t:'Waqf & Trust',d:'12 Functions',s:'60% Waqf, Charity'},
-{icon:'fa-file-invoice-dollar',c:'from-amber-500 to-yellow-600',t:'Accounts 8000 MVR',d:'20 Functions',s:'Fee, Profit, Ledger'},
-{icon:'fa-plane',c:'from-sky-500 to-blue-600',t:'Travel & Ticket',d:'12 Functions',s:'Ticket, Hotel, Umrah'},
-{icon:'fa-store',c:'from-purple-500 to-pink-500',t:'Global Business',d:'18 Functions',s:'Import Export'},
-{icon:'fa-shield-halved',c:'from-red-500 to-red-800',t:'Admin & NSR',d:'34 Functions - SECURED',s:'NSR #08430004 - Secret Control',secure:true}
-];
-document.getElementById('mods').innerHTML=mods.map(m=>`<div class="bg-slate-800 rounded-xl overflow-hidden ${m.secure?'hidden border-2 border-red-500' : ''}" id="${m.secure?'adminCard':''}"><div class="bg-gradient-to-r ${m.c} p-4 flex gap-3 items-center"><i class="fa ${m.icon}"></i><div><h3 class="font-bold">${m.t}</h3><p class="text-xs opacity-80">${m.d}</p></div></div><div class="p-3"><p class="text-xs opacity-60 mb-2">${m.s}</p><button class="w-full bg-slate-700 py-2 rounded-lg text-sm ${m.secure?'bg-red-600 font-bold':''}">${m.secure?'🔓 Open Secure Module':'Open Module'}</button></div></div>`).join('');
-document.getElementById('logo').onerror=function(){this.src='https://via.placeholder.com/100?text=NH';};
-let clicks=0; let timer=null;
-const logo=document.getElementById('logo');
-const PASSWORD="NH1000";
-logo.addEventListener('click',()=>{
- clicks++; logo.style.boxShadow=`0 0 ${clicks*10}px gold`;
- if(timer) clearTimeout(timer); timer=setTimeout(()=>{clicks=0; logo.style.boxShadow='';},1500);
- if(clicks===3){ clicks=0; logo.style.boxShadow=''; const p=prompt('🔐 Royal Security - 3 Click Verified\nEnter Password:'); if(p===PASSWORD){ document.getElementById('adminCard').classList.remove('hidden'); document.getElementById('adminCard').scrollIntoView({behavior:'smooth'}); alert('✅ Admin Unlocked - NH1000 Verified'); sessionStorage.setItem('adminUnlock','true'); } else if(p!==null){ alert('❌ Wrong Password!'); } }
-});
-if(sessionStorage.getItem('adminUnlock')==='true'){ const c=document.getElementById('adminCard'); if(c) c.classList.remove('hidden'); }
-</script>
-<script src="./kalyan_167_final.js"></script>
-</body>
-</html>
+const mods=[{id:'a',n:'নিয়োগ মাস্টার ২৮টি',c:['সিভি আপলোড','সিভি লিস্ট','ভিসা']},{id:'b',n:'কৃষি ১৮টি',c:['কৃষক','জমি','বীজ']},{id:'c',n:'অ্যাকাউন্ট ২০টি',c:['৮০০০ MDR','৬০% ওয়াকফ','ব্যালেন্স']},{id:'d',n:'অ্যাডমিন ৩৪টি সুরক্ষিত',p:1,c:['NSR ড্যাশবোর্ড','ইউজার','সিকিউরিটি']}];
+function r(){let h='';mods.forEach(x=>{h+=`<div class=card><b>${x.n}</b><br><button class=btn onclick="o('${x.id}')">মডিউল খুলুন</button></div>`});document.getElementById('m').innerHTML=h}
+function o(id){let m=mods.find(x=>x.id==id);if(m.p){let p=prompt('Password NH1000:');if(p!=='NH1000'){alert('Access Denied');return}}document.getElementById('t').innerText=m.n;let s='';m.c.forEach((f,i)=>{s+=`<div style="background:#1f2b4a;padding:10px;margin:5px 0;border-radius:8px;display:flex;justify-content:space-between">${i+1}. ${f} <button onclick="alert('Opening ${f}')" style="background:#00c853;border:none;color:#fff;padding:4px 10px;border-radius:10px">Open</button></div>`});document.getElementById('l').innerHTML=s;document.getElementById('pop').style.display='flex'}
+r();
+</script></body></html>
