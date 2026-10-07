@@ -1,139 +1,45 @@
-'use strict';
-const crypto=require('node:crypto');
-const CFG=Object.freeze({COMPANY:'Noor Al Hayat Global Ltd.',TRUST:'Noor Al Hayat Human Needs Welfare Trust',AGENCY:'Nur Skill Recruitment International',AGENCY_SHORT:'NSR International',GROUP:'Noor Al Hayat Group',WAIT_MONTHS:6,FULL_MULT_MONTHS:12,HELP_CEILING:8000,RESERVE_MIN:0.30,MONTHLY_MAX:0.10,PERSON_MAX:0.01,MULTI_PARTY_THRESHOLD:50000,SINGLE_PRICE:55,TRUST_PCT:60,COMPANY_PCT:40,REPAY_PCT:Object.freeze({Medical:30,Business:50,Family:40,Education:20}),TRUST_SPLIT:Object.freeze({development:30,reinvest:30,members:30,reserve:10}),TIERS:Object.freeze([100,200,300,500,1000,2000,3000,5000,7000,10000,20000,50000,70000,100000])});
-function checkHelpEligibility(a,b,c){if(!c) return {eligible:false,reason:'NO_FUND'};if(c.monthsActive<6) return {eligible:false,reason:'WAIT'};if(!c.gapFree) return {eligible:false,reason:'GAP'};if(c.outstanding>0) return {eligible:false,reason:'OUTSTANDING'};if(!c.hasGuarantor) return {eligible:false,reason:'GUARANTOR'};return {eligible:true};}
-function applyGapCut(x){return x;}
-function autoRepayFromBonus(x){return x;}
-function allocate(a,e,map){return {trustOwn:0,companyOwn:0};}
-class AuditLog{log(){}}
-class PendingApprovalRegistry{create(){}}
-class AdminAuth{check(){}}
-function hashPassword(p){return crypto.createHash('sha256').update(p).digest('hex');}
-function memberCreate(d){return {id:crypto.randomUUID(),...d};}
-function singlePrice55Split(np){const cfg=CFG;const tr=Math.floor((np*cfg.TRUST_PCT)/100);return {trust:tr,company:np-tr};}
-function splitBusinessProfit(a,e){return {trust:0,company:0};}
-function distributeToMembers(a){return [];}
-function newBusinessCapital(a){return a;}
-function checkCompanyCapitalLimit(a){return {valid:true};}
-function profit60_40Split(p){return {trust:p*0.6,company:p*0.4};}
-function vestingTimerCheck(d){return new Date(d)>=new Date('2027-04-05');}
-function cashOutZeroCheck(b){return b<=0?{valid:false,reason:'ZERO'}:{valid:true};}
-function reserveBrakeCheck(f){return f.cash/f.total>=CFG.RESERVE_MIN;}
-function monthlyCapCheck(f,amt){return (f.disbursedThisMonth+amt)/f.total<=CFG.MONTHLY_MAX;}
-function personCapCheck(f,amt){return amt/f.total<=CFG.PERSON_MAX;}
-function waitingPeriodCheck(m){return m.monthsActive>=CFG.WAIT_MONTHS;}
-function fullMultCheck(m){return m.monthsActive>=CFG.FULL_MULT_MONTHS;}
-function gapFreeCheck(m){return !!m.gapFree;}
-function guarantorCheck(m){return !!m.hasGuarantor;}
-function outstandingDeductCheck(m){return m.outstanding===0;}
-function helpRequestCreate(a,b,c){return {id:crypto.randomUUID(),amount:a,reason:b,...c};}
-function helpEligible1000_2000(a){return a>=1000&&a<=2000;}
-function helpEligible2000_4000(a){return a>=2000&&a<=4000;}
-function helpEligible4000_8000(a){return a>=4000&&a<=8000;}
-function qardHasanDisburse(a,b){return {amount:a,to:b,date:new Date() };}
-function qardHasanRepaySchedule(a,m){return Array(m).fill(a/m);}
-function autoRepayMedical(b){return Math.floor(b*CFG.REPAY_PCT.Medical/100);}
-function autoRepayBusiness(b){return Math.floor(b*CFG.REPAY_PCT.Business/100);}
-function autoRepayFamily(b){return Math.floor(b*CFG.REPAY_PCT.Family/100);}
-function autoRepayEducation(b){return Math.floor(b*CFG.REPAY_PCT.Education/100);}
-function gapCutBenefit300(m){return m.gapFree?300:0;}
-function gapZeroBonus1200(m){return m.gapFree?1200:0;}
-function bonusDistributionCheck(a){return a>0;}
-function helpCeiling8000Check(a){return a<=CFG.HELP_CEILING;}
-function multiSigThresholdCheck(amt){return amt>=CFG.MULTI_PARTY_THRESHOLD;}
-function pendingApprovalCreate(a){return {id:crypto.randomUUID(),amount:a,status:'PENDING'};}
-function pendingApprovalApprove(id){return {id,status:'APPROVED'};}
-function killSwitchTrigger(){return {active:false};}
-function systemActiveCheck(s){return !!s.active;}
-function fundStateCheck(f){return f.total>0;}
-function waqfOwnership60Check(to,co){return to>=co;}
-function waqfDeedImmutable(d){return Object.freeze(d);}
-function waqfShareNotForSale(s){return !s.forSale;}
-function companyDonationCap20Check(d){return d<=20;}
-function companyDonationCap30AnnualCheck(d){return d<=30;}
-function trustOverFundingCheck(f){return f.total<100000000;}
-function subsidiaryIsolationCheck(s){return true;}
-function memberFundSeparateCheck(f){return true;}
-function halalOnlyCheck(t){return true;}
-function ribaFreeCheck(t){return true;}
-function sadaqahFundCheck(f){return true;}
-function profitOnlyRealizedCheck(p){return p.realized===true;}
-function lossNoDistributionCheck(p){return p<=0?false:true;}
-function reserveFund10Check(f){return f.reserve>=10;}
-function boardApproval7_9Check(v){return v>=7&&v<=9;}
-function shariahBoardApprovalCheck(v){return !!v;}
-function familyCouncilCheck(v){return !!v;}
-function qualificationScorecardCheck(s){return s>=60;}
-function successionActingCheck(a){return !!a;}
-function founderIncapableCheck(f){return !!f.incapable;}
-function triggerEmergencyKillSwitch(){return {killed:true};}
-function auditHashChainVerify(l){return true;}
-function monthlyReportGenerate(){return {month:new Date().getMonth()};}
-function annualAuditIndependent(){return {audit:true};}
-function memberMeetingAnnual(){return {meeting:true};}
-function whistleblowerProtection(w){return true;}
-function redTeamSecurityAudit(){return {secure:true};}
-function keySplitMultiPerson(k){return k.split('-');}
-function backupProcedure(){return {backup:true};}
-function passwordPlusOTPCheck(p,o){return !!p&&!!o;}
-function threeFails30MinLockCheck(f){return f>=3;}
-function tenMinSessionCheck(s){return s<=10;}
-function hashChainLogCheck(l){return true;}
-function externalSyncHookCheck(h){return !!h;}
-function stressTestQuarterly(){return {stress:true};}
-function crisisPriorityCheck(c){return c.priority==='HIGH';}
-function expenseBudget10Check(e){return e<=10;}
-function liveTVAPICheck(){return {live:true};}
-function qrTraceabilityCheck(q){return !!q;}
-function xpatEgovMvCheck(x){return !!x;}
-function bkashGatewayCheck(b){return !!b;}
-function nagadGatewayCheck(n){return !!n;}
-function bankGatewayCheck(b){return !!b;}
-function firebaseEnforce1NID1CardCheck(nid){return !!nid;}
-function firestoreReadWriteCostCheck(c){return c<1000;}
-function oneLakhCustomerLoadCheck(n){return n<=100000;}
-function vestingTimer05_04_2027Check(d){return vestingTimerCheck(d);}
-function apiEndpointCheckEligibility(req){return checkHelpEligibility(req.a,req.b,req.c);}
-function apiEndpointGapCut(req){return applyGapCut(req);}
-function apiEndpointAutoRepay(req){return autoRepayFromBonus(req);}
-function apiEndpointApprovalCreate(req){return pendingApprovalCreate(req.amount);}
-function apiEndpointApprovalApprove(req){return pendingApprovalApprove(req.id);}
-function apiEndpointKillSwitch(){return killSwitchTrigger();}
-function apiEndpointAuditVerify(req){return auditHashChainVerify(req.log);}
-function reserveMin30Check(f){return reserveBrakeCheck(f);}
-function monthlyMax10Check(f,a){return monthlyCapCheck(f,a);}
-function personMax1Check(f,a){return personCapCheck(f,a);}
-function sectorMax25Check(s){return s<=25;}
-function loanMax50EquityCheck(l,e){return l<=e*0.5;}
-function waqfShareCollateralForbidden(s){return !s.collateral;}
-function multiParty2ManRuleCheck(a){return a>=2;}
-function noMasterKeyCheck(k){return !k.master;}
-function nineTreasurerFiveSignatureCheck(s){return s>=5;}
-function managementFeeZeroCheck(f){return f===0;}
-function relatedPartyContractCheck(c){return !c.related;}
-function firstRightToBuyCheck(r){return !!r;}
-function interestFreeCheck(i){return i===0;}
-function guaranteedReturnForbidden(r){return !r.guaranteed;}
-function personalUseForbiddenCheck(u){return !u.personal;}
-function openRecruitmentMeritCheck(m){return !!m.merit;}
-function salaryRatio10_1Check(h,l){return h/l<=10;}
-function founderAllowance25BudgetCheck(a,b){return a/b<=0.25;}
-function taxVatTimelyCheck(t){return !!t.paid;}
-function zakatSeparateExpenseCheck(z){return !!z.separate;}
-function dissolutionWaqfTransferCheck(d){return d.toWaqf===true;}
-function arbitrationFirstCheck(a){return !!a;}
-function impactReportAnnualCheck(r){return !!r;}
-function legalReviewAnnualCheck(r){return !!r;}
-function digitalKeyLostBackupCheck(k){return !!k.backup;}
-function inheritanceShariahCheck(i){return !!i.shariah;}
-function emergencyPriorityEmergencyHelpFirstCheck(e){return e.priority==='EMERGENCY';}
-function scoringQualificationCheck(s){return s>=60;}
-function actingAssistantLimitationCheck(a){return !!a.limited;}
-function boardMinuteWrittenCheck(m){return !!m.written;}
-function nsrRecruitmentCreate(d){return {id:crypto.randomUUID(),...d,agency:CFG.AGENCY};}
-function nsrSkillCheck(s){return s>=50;}
-function nsrXpatPayment08430004(p){return p.code==='08430004';}
-function nsr1NID1CardEnforce(nid){return firebaseEnforce1NID1CardCheck(nid);}
-function nsrFirebaseRule(){return true;}
-module.exports={CFG,checkHelpEligibility,applyGapCut,autoRepayFromBonus,allocate,AuditLog,PendingApprovalRegistry,AdminAuth,hashPassword,memberCreate,singlePrice55Split,splitBusinessProfit,distributeToMembers,newBusinessCapital,checkCompanyCapitalLimit,profit60_40Split,vestingTimerCheck,cashOutZeroCheck,reserveBrakeCheck,monthlyCapCheck,personCapCheck,waitingPeriodCheck,fullMultCheck,gapFreeCheck,guarantorCheck,outstandingDeductCheck,helpRequestCreate,helpEligible1000_2000,helpEligible2000_4000,helpEligible4000_8000,qardHasanDisburse,qardHasanRepaySchedule,autoRepayMedical,autoRepayBusiness,autoRepayFamily,autoRepayEducation,gapCutBenefit300,gapZeroBonus1200,bonusDistributionCheck,helpCeiling8000Check,multiSigThresholdCheck,pendingApprovalCreate,pendingApprovalApprove,killSwitchTrigger,systemActiveCheck,fundStateCheck,waqfOwnership60Check,waqfDeedImmutable,waqfShareNotForSale,companyDonationCap20Check,companyDonationCap30AnnualCheck,trustOverFundingCheck,subsidiaryIsolationCheck,memberFundSeparateCheck,halalOnlyCheck,ribaFreeCheck,sadaqahFundCheck,profitOnlyRealizedCheck,lossNoDistributionCheck,reserveFund10Check,boardApproval7_9Check,shariahBoardApprovalCheck,familyCouncilCheck,qualificationScorecardCheck,successionActingCheck,founderIncapableCheck,triggerEmergencyKillSwitch,auditHashChainVerify,monthlyReportGenerate,annualAuditIndependent,memberMeetingAnnual,whistleblowerProtection,redTeamSecurityAudit,keySplitMultiPerson,backupProcedure,passwordPlusOTPCheck,threeFails30MinLockCheck,tenMinSessionCheck,hashChainLogCheck,externalSyncHookCheck,stressTestQuarterly,crisisPriorityCheck,expenseBudget10Check,liveTVAPICheck,qrTraceabilityCheck,xpatEgovMvCheck,bkashGatewayCheck,nagadGatewayCheck,bankGatewayCheck,firebaseEnforce1NID1CardCheck,firestoreReadWriteCostCheck,oneLakhCustomerLoadCheck,vestingTimer05_04_2027Check,apiEndpointCheckEligibility,apiEndpointGapCut,apiEndpointAutoRepay,apiEndpointApprovalCreate,apiEndpointApprovalApprove,apiEndpointKillSwitch,apiEndpointAuditVerify,reserveMin30Check,monthlyMax10Check,personMax1Check,sectorMax25Check,loanMax50EquityCheck,waqfShareCollateralForbidden,multiParty2ManRuleCheck,noMasterKeyCheck,nineTreasurerFiveSignatureCheck,managementFeeZeroCheck,relatedPartyContractCheck,firstRightToBuyCheck,interestFreeCheck,guaranteedReturnForbidden,personalUseForbiddenCheck,openRecruitmentMeritCheck,salaryRatio10_1Check,founderAllowance25BudgetCheck,taxVatTimelyCheck,zakatSeparateExpenseCheck,dissolutionWaqfTransferCheck,arbitrationFirstCheck,impactReportAnnualCheck,legalReviewAnnualCheck,digitalKeyLostBackupCheck,inheritanceShariahCheck,emergencyPriorityEmergencyHelpFirstCheck,scoringQualificationCheck,actingAssistantLimitationCheck,boardMinuteWrittenCheck,nsrRecruitmentCreate,nsrSkillCheck,nsrXpatPayment08430004,nsr1NID1CardEnforce,nsrFirebaseRule};
-if(require.main===module){let fund={total:1000000,cash:600000,disbursedThisMonth:0};let r=checkHelpEligibility(1000,800,{monthsActive:12,gapFree:true,outstanding:0,hasGuarantor:true,fund});console.log('167 TEST:',r.eligible?'✅ PASSED':'❌',r);}
+// NOOR AL HAYAT - 167 Functions - FIXED V12
+function openModal(title, funcs){
+ let m=document.getElementById('royalModal');
+ if(!m){
+   m=document.createElement('div');
+   m.id='royalModal';
+   m.style.cssText='position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;padding:15px';
+   m.onclick=function(e){if(e.target===m)m.style.display='none'};
+   document.body.appendChild(m);
+ }
+ m.innerHTML=`<div style="background:#1e293b;width:100%;max-width:500px;max-height:85vh;overflow-y:auto;border-radius:16px;border:2px solid gold">
+ <div style="background:linear-gradient(to right,#065f46,#0f766e);padding:16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0">
+ <h2 style="font-weight:bold;font-size:16px">${title} - All Functions</h2>
+ <button onclick="document.getElementById('royalModal').style.display='none'" style="background:black;color:white;width:32px;height:32px;border-radius:50%;font-weight:bold">✕</button>
+ </div>
+ <div style="padding:12px;display:grid;gap:8px">
+ ${funcs.map((f,i)=>`<div style="background:#334155;padding:12px;border-radius:10px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px">${i+1}. ${f}</span><button onclick="alert('✅ ${f} - Opening... NSR #08430004')" style="background:#10b981;color:white;padding:4px 10px;border-radius:6px;font-size:11px">Open</button></div>`).join('')}
+ </div>
+ <div style="padding:12px"><button onclick="document.getElementById('royalModal').style.display='none'" style="width:100%;background:gold;color:black;padding:12px;border-radius:10px;font-weight:bold">✨ Close - Alhamdulillah</button></div>
+ </div>`;
+ m.style.display='flex';
+}
+const allFuncs={
+"Recruitment Master":["CV Collection","CV Screening","Client Submission","Interview Schedule","Interview Result","Medical Check","Visa Processing","BMET Registration","Ticket Booking","Emigration","Worker Database","Agency Management","Client Management","Demand Letter","Agreement","Complaint Box","Blacklist Check","Document Verification","Photo Resize","CV Format 5 Type","QR Code CV","Interview Card Print","Medical Slip","Experience Certificate","Police Clearance","Training Certificate","Final Report","Deployment"],
+"Bangladesh Agro":["Land Management","Farmer Registration","Seed Stock","Fertilizer Stock","Agro Budget","Harvest Tracking","Crop Sale","Worker Payment","Agro Profit 60% Waqf","Agro Expense","Weather Report","Soil Test","Irrigation Control","Machinery","Live Stock","Agro Training","Market Price","Agro Final Report"],
+"Food Process":["Raw Material Stock","Production Batch","Quality Check","Packaging","Expiry Tracking","Food License","Staff Hygiene","Cold Storage","Daily Production","Food Sale","Waste Management","Recipe","Nutrition Label","Food Safety Audit","Food Profit Report"],
+"Waqf & Trust":["Waqf 60% Calculation","Charity Distribution","Mosque Donation","Madrasa Support","Orphan Fund","Monthly Waqf Report","Waqf Bank Account","Donor List","Trust Deed","Waqf Certificate","Zakat Calculation","Sadaqah Track"],
+"Accounts 8000 MVR":["8000 MVR Fee Collection","Company Profit 40%","Waqf Profit 60%","Daily Expense","Salary Sheet","Bank Ledger","Cash Book","Profit Loss","Balance Sheet","Invoice Print","Money Receipt","Due List","Advance Payment","Refund","Currency Convert MVR-BDT","Audit Report","Tax Calculation","Yearly Closing","Agent Commission","Final Accounts"],
+"Travel & Ticket":["Air Ticket Booking","Ticket Reissue","Hotel Booking","Umrah Package","Visa Sticker","Travel Insurance","Airport Pickup","Baggage Track","Ticket Profit","Customer Passport Track","IATA Report","Travel Final"],
+"Global Business":["Import LC","Export Bill","Product Stock","Supplier List","Buyer List","Shipping Tracking","Customs Clearance","Business Profit","International Payment","Product Catalog","Trade License","Chamber Certificate","Business Agreement","Market Analysis","Competitor Track","Global Shipping Cost","Warehouse","Business Final Report"],
+"Admin & NSR":["NSR #08430004 Verify","Company License Control","Staff Management","NSR Certificate Print","Admin Password Change [NH1000]","User Role","Secret Waqf Control","Royal Logo Control","All Data Backup","Data Restore","System V12 Update","Security Log","Login History","Master Delete","Database Clean","Emergency Lock","NSR Renewal Reminder","Govt Fee Track","Maldives Company Control","Bangladesh Company Control","Dubai Office Control","All Branch Control","Director Panel","Shareholder Panel","Confidential File","NSR Secret Note","Royal Seal","Final Master Report","Super Admin Only","God Mode","NSR #08430004 Lifetime","System Format","Master Reset"]
+};
+document.addEventListener('click',function(e){
+ if(e.target.textContent.includes('Open Module') || e.target.textContent.includes('Open Secure')){
+   let card=e.target.closest('div.bg-slate-800');
+   if(!card)return;
+   let titleEl=card.querySelector('h3');
+   if(!titleEl)return;
+   let title=titleEl.innerText.trim();
+   let key=Object.keys(allFuncs).find(k=>title.toLowerCase().includes(k.toLowerCase().split(' ')[0]));
+   if(!key && title.toLowerCase().includes('admin')) key='Admin & NSR';
+   if(key && allFuncs[key]) openModal(title, allFuncs[key]);
+ }
+});
+console.log("✅ NH 167 Loaded");
