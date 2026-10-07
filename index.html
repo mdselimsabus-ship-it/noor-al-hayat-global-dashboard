@@ -3,25 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Noor Al Hayat - V11 Dashboard</title>
+<title>Noor Al Hayat - V12 Royal</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
-<body class="bg-slate-900 text-white p-4">
-<div class="max-w-6xl mx-auto">
-<div class="bg-gradient-to-r from-emerald-600 to-teal-700 p-6 rounded-2xl mb-6 text-center">
-<h1 class="text-3xl font-bold">NOOR AL HAYAT GLOBAL DASHBOARD</h1>
-<p>V11 - 167 Function Live | NSR #08430004</p>
-<p class="text-sm mt-1 bg-black/20 inline-block px-3 py-1 rounded-full">8000 MVR | 60% Waqf | Noor Al Hayat Global Ltd.</p>
+<body class="bg-[#0f172a] text-white min-h-screen">
+
+<div class="bg-gradient-to-br from-emerald-700 via-teal-700 to-green-800 p-3 sticky top-0 z-50 shadow-2xl border-b-4 border-amber-400">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img src="https://i.ibb.co/7dPqLqL/logo.png" id="logo" class="w-14 h-14 rounded-full border-2 border-amber-400 bg-white object-cover shadow-lg">
+<div>
+<h1 class="text-[15px] md:text-xl font-bold">NOOR AL HAYAT GLOBAL</h1>
+<p class="text-[10px] md:text-xs opacity-90">NSR #08430004 | 167 Function | V12 Royal</p>
 </div>
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-<div class="bg-slate-800 p-4 rounded-xl"><p class="text-gray-400 text-sm">Functions</p><p class="text-2xl font-bold text-emerald-400">167</p></div>
-<div class="bg-slate-800 p-4 rounded-xl"><p class="text-gray-400 text-sm">Waqf</p><p class="text-2xl font-bold text-blue-400">60%</p></div>
-<div class="bg-slate-800 p-4 rounded-xl"><p class="text-gray-400 text-sm">Fee</p><p class="text-2xl font-bold text-amber-400">8000 MVR</p></div>
-<div class="bg-slate-800 p-4 rounded-xl"><p class="text-gray-400 text-sm">Status</p><p class="text-2xl font-bold text-purple-400">LIVE</p></div>
 </div>
-<div id="app" class="bg-slate-800 p-6 rounded-xl">Loading 167 Functions...</div>
+<div class="text-right"><p class="bg-black/30 px-3 py-1 rounded-full text-[10px]">8000 MVR | 60% WAQF</p><p class="text-[10px] mt-1 text-amber-300 font-bold">● LIVE</p></div>
 </div>
+</div>
+
+<div class="max-w-7xl mx-auto p-3">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+<div class="bg-slate-800 p-3 rounded-xl border-l-4 border-emerald-400"><p class="text-[11px] text-gray-400">Functions</p><p class="text-xl font-bold text-emerald-400">167</p></div>
+<div class="bg-slate-800 p-3 rounded-xl border-l-4 border-blue-400"><p class="text-[11px] text-gray-400">Company</p><p class="text-[10px] font-bold text-blue-400">Noor Al Hayat Ltd.</p></div>
+<div class="bg-slate-800 p-3 rounded-xl border-l-4 border-amber-400"><p class="text-[11px] text-gray-400">Waqf Trust</p><p class="text-xl font-bold text-amber-400">60%</p></div>
+<div class="bg-slate-800 p-3 rounded-xl border-l-4 border-purple-400"><p class="text-[11px] text-gray-400">System</p><p class="text-xl font-bold text-purple-400">V12</p></div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="mods"></div>
+</div>
+
+<script>
+const mods=[
+{icon:'fa-users',c:'from-emerald-500 to-teal-600',t:'Recruitment Master',n:28,d:'CV, Interview, Medical, Visa, BMET'},
+{icon:'fa-tractor',c:'from-green-500 to-lime-600',t:'Bangladesh Agro',n:18,d:'Agro Project, Farmer'},
+{icon:'fa-utensils',c:'from-orange-500 to-red-600',t:'Food Process',n:15,d:'Processing, Packaging'},
+{icon:'fa-hand-holding-heart',c:'from-blue-500 to-cyan-600',t:'Waqf & Social',n:22,d:'60% Waqf, Charity'},
+{icon:'fa-file-invoice-dollar',c:'from-amber-500 to-yellow-600',t:'Accounts 8000 MVR',n:20,d:'Fee, Profit, Ledger'},
+{icon:'fa-plane',c:'from-sky-500 to-blue-600',t:'Travel & Ticket',n:12,d:'Ticket, Hotel, Umrah'},
+{icon:'fa-store',c:'from-purple-500 to-pink-600',t:'Global Business',n:18,d:'Import Export'},
+{icon:'fa-shield-halved',c:'from-red-500 to-rose-600',t:'Admin & NSR',n:34,d:'NSR #08430004, License'},
+];
+document.getElementById('mods').innerHTML=mods.map(m=>`<div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700"><div class="bg-gradient-to-r ${m.c} p-3 flex gap-3 items-center"><i class="fas ${m.icon}"></i><div class="flex-1"><p class="font-bold text-sm">${m.t}</p><p class="text-[10px] opacity-80">${m.n} Functions</p></div></div><div class="p-3"><p class="text-[11px] text-gray-400">${m.d}</p><button class="mt-2 w-full bg-slate-700 py-1.5 rounded text-[11px]">Open Module</button></div></div>`).join('');
+// Logo Fallback
+document.getElementById('logo').onerror=function(){this.src='https://cdn-icons-png.flaticon.com/512/2830/2830305.png';}
+</script>
 <script src="./kalyan_167_final.js"></script>
-<script>document.getElementById('app').innerHTML='<div class=text-emerald-400>✅ kalyan_167_final.js Loaded!</div><div class=mt-4>Dashboard V11 Active</div>';</script>
 </body>
 </html>
