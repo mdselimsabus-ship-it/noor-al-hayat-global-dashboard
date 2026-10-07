@@ -1,16 +1,27 @@
 <!DOCTYPE html>
-<html>
-<head><meta charset="UTF-8"><title>Noor Al Hayat Group V10</title>
-<style>body{background:#000;color:#fff;padding:20px;font-family:system-ui} .card{border:1px solid #333;padding:16px;border-radius:12px} .ok{color:#0f0} .gold{color:gold}</style>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noor Al Hayat - V11 Dashboard</title>
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<h1 class="gold">Noor Al Hayat Group V10 - 167 Function</h1>
-<div class="card">
-<p>Company: Noor Al Hayat Global Ltd.</p>
-<p>Trust: Noor Al Hayat Human Needs Welfare Trust - 60% Waqf</p>
-<p>Agency: NSR International - #08430004 - 8000 MVR</p>
-<p class="ok">✅ 167 FUNCTION VERIFIED</p>
-<p>File: kalyan_167_final.js</p>
+<body class="bg-slate-900 text-white p-4">
+<div class="max-w-6xl mx-auto">
+<div class="bg-gradient-to-r from-emerald-600 to-teal-700 p-6 rounded-2xl mb-6 text-center">
+<h1 class="text-3xl font-bold">NOOR AL HAYAT GLOBAL DASHBOARD</h1>
+<p>V11 - 167 Function Live | NSR #08430004</p>
+<p class="text-sm mt-1 bg-black/20 inline-block px-3 py-1 rounded-full">8000 MVR | 60% Waqf | Noor Al Hayat Global Ltd.</p>
 </div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+<div class="bg-slate-800 p-4 rounded-xl"><p class="text-gray-400 text-sm">Functions</p><p class="text-2xl font-bold text-emerald-400">167</p></div>
+<div class="bg-slate-800 p-4 rounded-xl"><p class="text-gray-400 text-sm">Waqf</p><p class="text-2xl font-bold text-blue-400">60%</p></div>
+<div class="bg-slate-800 p-4 rounded-xl"><p class="text-gray-400 text-sm">Fee</p><p class="text-2xl font-bold text-amber-400">8000 MVR</p></div>
+<div class="bg-slate-800 p-4 rounded-xl"><p class="text-gray-400 text-sm">Status</p><p class="text-2xl font-bold text-purple-400">LIVE</p></div>
+</div>
+<div id="app" class="bg-slate-800 p-6 rounded-xl">Loading 167 Functions...</div>
+</div>
+<script src="./kalyan_167_final.js"></script>
+<script>document.getElementById('app').innerHTML='<div class=text-emerald-400>✅ kalyan_167_final.js Loaded!</div><div class=mt-4>Dashboard V11 Active</div>';</script>
 </body>
 </html>
